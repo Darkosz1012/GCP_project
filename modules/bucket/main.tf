@@ -1,9 +1,8 @@
 resource "null_resource" "local_execution" {
-  # provisioner "local-exec" {
-  #   # command     = "Compress-Archive -Path ./nodejs-server -DestinationPath ./nodejs-server.zip -Update"
-  #   # command     = "echo test"
-  #   # interpreter = ["powershell.exe", "-Command"]
-  # }
+  provisioner "local-exec" {
+    command     = "Compress-Archive -Path ./nodejs-server -DestinationPath ./nodejs-server.zip -Update"
+    interpreter = ["powershell.exe", "-Command"]
+  }
 }
 
 resource "google_storage_bucket" "app-bucket" {
