@@ -15,10 +15,21 @@ resource "google_project_iam_member" "storage_viewer" {
   member  = "serviceAccount:${google_service_account.custom_service_account.email}"
 }
 
+
+# data "google_project" "project" {
+# }
+
+# resource "google_storage_bucket_iam_member" "app" {
+#   bucket = var.bucket_name
+#   role   = "roles/storage.objectViewer"
+#   member = "serviceAccount:${data.google_project.project.number}@cloudbuild.gserviceaccount.com"
+# }
+
 resource "google_app_engine_standard_app_version" "app_v1" {
-  version_id = "v1"
-  service    = "default"
-  runtime    = "nodejs18"
+  version_id     = "v1-${formatdate("DD-MMM-YYYY-hh-mm-ss-ZZZ", timestamp())}"
+  service        = "default"
+  runtime        = "nodejs18"
+  instance_class = "F1"
 
   entrypoint {
     shell = "node ./index.js"
@@ -30,12 +41,14 @@ resource "google_app_engine_standard_app_version" "app_v1" {
     }
   }
 
+
+
   env_variables = var.env_variables
 
   automatic_scaling {
     max_concurrent_requests = 10
     min_idle_instances      = 1
-    max_idle_instances      = 1
+    max_idle_instances      = 3
     min_pending_latency     = "1s"
     max_pending_latency     = "5s"
 
@@ -47,6 +60,16 @@ resource "google_app_engine_standard_app_version" "app_v1" {
     }
   }
 
-  delete_service_on_destroy = true
+  delete_service_on_destroy = false
+  noop_on_destroy           = true
   service_account           = google_service_account.custom_service_account.email
+
+
 }
+
+
+# resource "google_app_engine_application" "app" {
+#   project     = var.project_id
+#   location_id = var.location_id
+
+# }

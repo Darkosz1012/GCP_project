@@ -1,7 +1,7 @@
 variable "gcp_project_id" {
   type        = string
   description = "GCP project id"
-  default     = "unique-highway-371216"
+  default     = "idyllic-script-371819"
 }
 
 variable "gcp_region" {
@@ -25,4 +25,10 @@ variable "bucket_name" {
 variable "object_name" {
   type    = string
   default = "node-server.zip"
+}
+
+variable "code_path" {
+  type        = string
+  description = "Path to server code which will be compressed and send to cloud storage."
+  default     = "./src/*"
 }

@@ -12,3 +12,8 @@ variable "object_name" {
 variable "location" {
   type = string
 }
+
+variable "code_path" {
+  type        = string
+  description = "Path to server code which will be compressed and send to cloud storage."
+}

@@ -1,9 +1,17 @@
 resource "null_resource" "local_execution" {
   provisioner "local-exec" {
-    command     = "Compress-Archive -Path ./nodejs-server -DestinationPath ./nodejs-server.zip -Update"
+    command     = "Compress-Archive -Path ${var.code_path} -DestinationPath ./${var.object_name} -Update"
     interpreter = ["powershell.exe", "-Command"]
   }
 }
+# resource "null_resource" "local_execution" {
+
+#   provisioner "local-exec" {
+#     interpreter = ["PowerShell", "-Command"]
+#     command     = "./create_zip.ps1"
+#   }
+
+# }
 
 resource "google_storage_bucket" "app-bucket" {
   name          = var.bucket_name
@@ -17,7 +25,7 @@ resource "google_storage_bucket" "app-bucket" {
 
 resource "google_storage_bucket_object" "app-code" {
   name   = var.object_name
-  source = "./nodejs-server.zip"
+  source = "./${var.object_name}"
   bucket = var.bucket_name
   depends_on = [
     null_resource.local_execution,
