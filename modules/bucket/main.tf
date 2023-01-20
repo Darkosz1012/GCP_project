@@ -1,4 +1,7 @@
 resource "null_resource" "local_execution" {
+  triggers = {
+    new_bucket = var.bucket_name
+  }
   provisioner "local-exec" {
     command     = "Compress-Archive -Path ${var.code_path} -DestinationPath ./${var.object_name} -Update"
     interpreter = ["powershell.exe", "-Command"]

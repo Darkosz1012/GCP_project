@@ -32,3 +32,8 @@ variable "max_instances" {
   type    = number
   default = 3
 }
+
+variable "code_version" {
+  type    = string
+  default = "v1"
+}

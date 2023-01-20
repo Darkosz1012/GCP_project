@@ -26,7 +26,7 @@ resource "google_project_iam_member" "storage_viewer" {
 # }
 
 resource "google_app_engine_standard_app_version" "app_v1" {
-  version_id     = "v1-${formatdate("DD-MMM-YYYY-hh-mm-ss-ZZZ", timestamp())}"
+  version_id     = "v1-${formatdate("DD-MM-YYYY-hh-mm-ss", timestamp())}"
   service        = "default"
   runtime        = "nodejs18"
   instance_class = "F1"

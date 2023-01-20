@@ -19,7 +19,7 @@ variable "gcp_zone" {
 
 variable "bucket_name" {
   type    = string
-  default = "code-bucket-asdfgewrsdf"
+  default = "code-bucket"
 }
 
 variable "object_name" {

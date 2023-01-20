@@ -7,7 +7,7 @@ provider "google" {
 
 
 module "bucket" {
-  source      = "../../modules/bucket"
+  source      = "../modules/bucket"
   bucket_name = var.bucket_name
   object_name = var.object_name
   location    = var.gcp_region
@@ -21,7 +21,7 @@ module "bucket" {
 
 
 module "app-engine" {
-  source      = "../../modules/app-engine"
+  source      = "../modules/app-engine"
   project_id  = var.gcp_project_id
   location_id = var.gcp_region
   object_name = var.object_name

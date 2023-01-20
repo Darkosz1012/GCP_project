@@ -19,7 +19,7 @@ variable "gcp_zone" {
 
 variable "bucket_name" {
   type    = string
-  default = "code-bucket-for-function-sdfsdfwerwasdf"
+  default = "code-bucket-for-function"
 }
 
 variable "object_name" {
@@ -31,4 +31,10 @@ variable "code_path" {
   type        = string
   description = "Path to server code which will be compressed and send to cloud storage."
   default     = "./src/*"
+}
+
+
+variable "code_version" {
+  type    = string
+  default = "v3"
 }
