@@ -47,3 +47,8 @@ module "api-gateway" {
     module.google-function
   ]
 }
+
+
+module "monitoring" {
+  source = "./modules/function-monitoring"
+}
