@@ -1,22 +1,19 @@
 # GCP_project
 ## Goal
-The application will have the task of displaying a product search engine and, if possible, allowing you to manage products.
+The application will have the task of saving items to the database.
 
 ## Infrastructure
 The infrastructure will be built using terraform on the Google Cloud Platform. Below is a diagram showing its architecture.
-![Untitled-2022-12-16-1021](https://user-images.githubusercontent.com/26382728/208067948-89950b8e-5cca-4bd6-9042-cc7a25e054f1.png)
+![image](https://user-images.githubusercontent.com/26382728/213666532-9253e93b-cb5e-4f3a-bd32-3e1c5539f687.png)
 
 ### API Gateway
 Api gateway exposes one endpoint for the entire application and all its services.
 
 ### Cloud Functions
-Allows you to add products to the database. It is written in Node.js.
-
-### App Engine
-It exposes product search api and hosts SPA written in Angular. It is written in Node.js.
+Allows you to add items to the database and get all items from database It is written in Node.js.
 
 ### Cloud Firestore
-Firestore is a document database that I decided to use to store product information.
+Firestore is a document database that I decided to use to store items information.
 
 ### Cloud Storage
 In it, I store all the application code that is called by other services.
